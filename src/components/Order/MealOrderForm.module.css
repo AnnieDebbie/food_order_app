@@ -1,0 +1,62 @@
+.meal-order__heading {
+    font-size: 1.5rem;
+    background-color: #8a2b06;
+    margin-top: 0;
+    color: white;
+    padding: 0.5rem;
+    gap: 8px;
+    margin: 0 0 1rem 0;
+}
+
+.meal-order__header {
+    display: inline-block;
+    margin: 0;
+    margin-right: 4rem;
+}
+
+
+.meal-order__input {
+    margin-bottom: 1rem;
+}
+
+.meal-order__input input {
+    padding: 0.5rem;
+    width: 50%;
+}
+
+.table {
+    table-layout: fixed;
+    margin-bottom: 1rem;
+}
+
+td,
+tr,
+th {
+    width: 25%;
+    text-align: left;
+}
+
+.meal-order__btn {
+    margin-top: 10px;
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #8a2b06;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    margin-left: 1rem;
+}
+
+
+.meal-order__btn:disabled,
+.meal-order__btn:disabled:active,
+.meal-order__btn:disabled:hover {
+    background-color: #ccc;
+    color: #292929;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: red
+}
