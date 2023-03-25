@@ -8,6 +8,7 @@ import CloseIcon from "../Cart/CloseIcon";
 
 const MealOrderForm = (props) => {
   const { items } = useContext(CartContext);
+  const cartCtx = useContext(CartContext);
 
   const notEmpty = (value) => value.trim() !== "";
   const validateEmail = (value) =>
@@ -105,7 +106,7 @@ const MealOrderForm = (props) => {
   /*
   const formIsValid = 
     firstNameValid && lastNameValid && emailValid && phoneValid;
-    */ 
+    */
   let formIsValid = false;
   if (firstNameValid && lastNameValid && emailValid && phoneValid)
     formIsValid = true;
@@ -123,32 +124,28 @@ const MealOrderForm = (props) => {
     ...items
   );
 
-  console.log(orderData);
-
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (!formIsValid) return;
 
-    try {
-      fetch(
-        "https://food-order-app-4dc6a-default-rtdb.firebaseio.com/orders.json",
-        {
-          method: "POST",
-          body: JSON.stringify(orderData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-
+    fetch(
+      "https://food-order-app-4dc6a-default-rtdb.firebaseio.com/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify(orderData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     resetFirstName();
     resetLastName();
     resetEmail();
     resetPhone();
+
+    cartCtx.clearCart();
+    props.onCloseForm();
   };
   return (
     <Modal onCloseCart={props.onCloseForm}>
@@ -171,6 +168,7 @@ const MealOrderForm = (props) => {
           <>
             <Input
               className={classes["meal-order__input"]}
+              key={prop.id}
               input={{
                 id: prop.id,
                 type: prop.type,
